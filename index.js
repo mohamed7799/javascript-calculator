@@ -3,6 +3,7 @@ let calculator = {
   currentOperation: "",
   firstValue: 0,
   onhold: false,
+  opDone:false,
   add: (x, y) => {
     return x + y;
   },
@@ -62,11 +63,12 @@ operations.forEach(op => {
 });
 
 //handling numbers
-numbers.forEach(element => {
-  element.addEventListener("click", event => {
+numbers.forEach(num => {
+  num.addEventListener("click", event => {
     let targetValue = event.target.innerText;
-    if (calculator.shownValue === "0") {
+    if (calculator.shownValue === "0"||calculator.opDone===true) {
       calculator.shownValue = targetValue;
+      calculator.opDone=false;
       update();
     } else {
       if (!(targetValue === "." && calculator.shownValue.includes("."))) {
@@ -84,8 +86,9 @@ equal.addEventListener("click", () => {
     calculator[`${calculator.currentOperation}`],
     calculator.firstValue
   );
+  console.log(calculator.firstValue,calculator.shownValue)
   update();
-  calculator.firstValue = 0;
+  calculator.firstValue = calculator.shownValue;
   calculator.onhold = false;
-  calculator.shownValue = "0";
+  calculator.opDone = true;
 });
