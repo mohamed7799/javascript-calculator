@@ -77,3 +77,18 @@ body {
     left: 0;
     padding: 1rem;
 }
+
+//media query
+
+@media (max-width: 900px) {
+  .calculator{
+      width: 50%;
+  }
+}
+
+@media (max-width: 500px) {
+  .calculator{
+      width: 70%;
+  }
+}
+
