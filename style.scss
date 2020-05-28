@@ -52,18 +52,20 @@ body {
 }
 
 .calculator__screen {
-    border: 1px solid;
-    height: 55px;
+    text-align: right;
     border-radius: 20px;
     margin-bottom: 1.5rem;
     background-color: white;
     color: black;
-    text-align: right;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     font-size: 2rem;
     padding: 1rem;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    direction: rtl;
 }
 
 .calculator__btns {
