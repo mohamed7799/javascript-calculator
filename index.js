@@ -3,7 +3,7 @@ let calculator = {
   currentOperation: "",
   firstValue: 0,
   onhold: false,
-  opDone:false,
+  opDone: false,
   add: (x, y) => {
     return x + y;
   },
@@ -16,13 +16,13 @@ let calculator = {
   div: (x, y) => {
     return x / y;
   },
-  clear: function() {
+  clear: function () {
     this.shownValue = "0";
   },
-  percentage: function() {
+  percentage: function () {
     this.shownValue /= 100;
   },
-  equal: function(currentOperation, x) {
+  equal: function (currentOperation, x) {
     this.shownValue = currentOperation(x, this.shownValue);
   }
 };
@@ -33,6 +33,7 @@ let screen = document.getElementById("CS-js");
 let clear = document.getElementById("clear-js");
 let percentage = document.getElementById("percentage-js");
 let equal = document.getElementById("equal");
+
 
 let update = () => {
   screen.innerText = calculator.shownValue;
@@ -66,9 +67,9 @@ operations.forEach(op => {
 numbers.forEach(num => {
   num.addEventListener("click", event => {
     let targetValue = event.target.innerText;
-    if (calculator.shownValue === "0"||calculator.opDone===true) {
+    if (calculator.shownValue === "0" || calculator.opDone === true) {
       calculator.shownValue = targetValue;
-      calculator.opDone=false;
+      calculator.opDone = false;
       update();
     } else {
       if (!(targetValue === "." && calculator.shownValue.includes("."))) {
@@ -82,11 +83,12 @@ numbers.forEach(num => {
 //getting results
 equal.addEventListener("click", () => {
   calculator.shownValue = parseFloat(calculator.shownValue);
+
   calculator.equal(
     calculator[`${calculator.currentOperation}`],
     calculator.firstValue
   );
-  console.log(calculator.firstValue,calculator.shownValue)
+
   update();
   calculator.firstValue = calculator.shownValue;
   calculator.onhold = false;

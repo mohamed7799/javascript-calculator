@@ -1,6 +1,9 @@
 /*general*/
 
-$border_color:#c5916d;
+$first-color: #1C1C1C;
+$sec-color:#505050;
+$third-color:#FF9500;
+
 * {
     padding: 0;
     margin: 0;
@@ -11,6 +14,14 @@ html,
 body {
     height: 100%;
     font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin mobile($size) {
+    @media screen and (max-width:$size) {
+        @content;
+    }
 }
 
 /*general*/
@@ -18,23 +29,35 @@ body {
 .title {
     text-align: center;
     padding-top: 2rem;
-    color: burlywood
+    color: $first-color;
 }
 
 .calculator {
-    border: 1px solid $border_color;
+
     padding: 1rem;
     width: 30%;
     margin: 2rem auto;
     font-size: 1.3rem;
-    border-radius: 5px;
-    color: gray;
+    border-radius: 20px;
+    background-color: $first-color;
+    color: white;
+
+    @include mobile(900px) {
+        width: 50%;
+    }
+
+    @include mobile(500px) {
+        width: 80%;
+    }
 }
 
 .calculator__screen {
-    border: 1px solid $border_color;
+    border: 1px solid;
     height: 55px;
+    border-radius: 20px;
     margin-bottom: 1.5rem;
+    background-color: white;
+    color: black;
     text-align: right;
     display: flex;
     align-items: center;
@@ -44,51 +67,56 @@ body {
 }
 
 .calculator__btns {
-    height: 80%;
+
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: .5rem;
-}
+    grid-gap: 1rem;
+    justify-items: center;
 
-.btn {
-    border: 1px solid $border_color;
-    border-radius: 5px;
-    height: 35px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:hover {
-        cursor: pointer;
-        background-color: rgb(238, 236, 236);
+    @include mobile(400px) {
+        height: auto;
     }
 }
 
-.zero {
-    grid-column: 1/4
+.btn {
+
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.6rem;
+    cursor: pointer;
+
+    @include mobile(400px) {
+        height: 30px;
+        width: 30px;
+        padding: 1rem;
+    }
+
 }
+
+.op-js {
+    background-color: $third-color;
+
+}
+
+.num-js,
+.sp-js {
+    background-color: $sec-color;
+}
+
+.zero {
+    grid-column: 1/4;
+}
+
 
 .footer {
-    position: fixed;
-    bottom: 0;
+    margin-top: auto;
+    background-color: $first-color;
+    color: $third-color;
     text-align: center;
-    background-color: antiquewhite;
-    right: 0;
-    left: 0;
+
     padding: 1rem;
 }
-
-//media query
-
-@media (max-width: 900px) {
-  .calculator{
-      width: 50%;
-  }
-}
-
-@media (max-width: 500px) {
-  .calculator{
-      width: 70%;
-  }
-}
-
